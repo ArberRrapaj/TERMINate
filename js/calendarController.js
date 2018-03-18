@@ -312,7 +312,7 @@ $entryDialogue.addEntry = function() {
             // noinspection JSAnnotator
             starttime.minute(00);
             // noinspection JSAnnotator
-            starttime.hour(00);
+            starttime.hour(01);
 
             endtime.hour(23);
             endtime.minute(59);
