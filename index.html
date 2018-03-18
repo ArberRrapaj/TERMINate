@@ -1,0 +1,244 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> TERMINate - Web-Engineering 1-Project</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="css/multiple-select.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="css/minty-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    <link rel="stylesheet" media="print" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
+
+    <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src="js/vendor/jquery-ui.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment-with-locales.min.js"></script>
+    <script type='text/javascript' src='js/vendor/jquery.timepicker.min.js'></script>
+    <script type='text/javascript' src='js/vendor/multiple-select.js'></script>
+    <script type='text/javascript' src='js/vendor/lightbox.min.js'></script>
+    <script src="js/vendor/jquery.modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <!-- *** Not used ***
+        <script type='text/javascript' src='js/vendor/trumbowyg.min.js'></script>
+    <link rel="stylesheet" href="css/trumbowyg.css">
+    -->
+</head>
+<body id="body">
+
+<div id="header-placeholder">
+
+</div>
+
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<div id="alerts">
+    <div id="info" class="info message" style="opacity: 0">
+        <h3 id= "infoTitle" class="alertTitle">Just for your information</h3>
+        <p id= "infoMessage">This is just an info notification message.</p>
+    </div>
+
+    <div id="error" class="error message" style="opacity: 0">
+        <h3 id= "errorTitle" class="alertTitle">Ups, an error ocurred</h3>
+        <p id="errorMessage">This is just an error notification message.</p>
+    </div>
+
+    <div id="warning" class="warning message" style="opacity: 0">
+        <h3 id= "warningTitle" class="alertTitle">Warning!</h3>
+        <p id="warningMessage">This is just a warning notification message.</p>
+    </div>
+
+    <div id="success" class="success message" style="opacity: 0">
+        <h3 id= "successTitle" class="alertTitle">Success!</h3>
+        <p id="successMessage">This is just a success notification message.</p>
+    </div>
+
+    <script type="text/javascript">
+        var myMessages = ['info','warning','error','success']; // define the messages types
+        var messagesHeights = new Array(); // this array will store height for each
+
+        var infoMessage = $("#infoMessage")[0];
+        var warningMessage = $("#warningMessage")[0];
+        var errorMessage = $("#errorMessage")[0];
+        var successMessage = $("#successMessage")[0];
+    </script>
+    <link rel="stylesheet" href="css/alerts.css" />
+    <script type="text/javascript" src="js/alertController.js"></script>
+</div>
+
+
+
+<!-- Modal HTML embedded directly into document -->
+<div id="categoriesModal" class="modal">
+    <p><h3>Category Management</h3></p>
+    <div id="addCategory">
+        <fieldset>
+            <label for="categoryName">Category Name</label>
+            <input type="text" name="categoryName" placeholder="Choose 1 category to change its name or just add a new one" id="categoryName" class="input text ui-widget-content">
+            <button type='button' id="addCategoryButton" onclick="addCategory()">Add Category</button>
+        </fieldset>
+    </div>
+    <table id="categoriesTable">
+        <tr class="labelsRow"> <td><label for="globalCategories"> <button type="button" class="btn btn-info" id="clearSelectionButton" onclick="clearGlobalSelect()">Clear Selection</button> Categories</label></td> <td class="buffer"></td> <td><label>Entries with this category</label></td>  </tr>
+        <tr>
+            <td><select name="globalCategories" id="globalCategories" class="text ui-widget-content"></select></td>
+            <td class="buffer"></td>
+            <td>
+                <div id="accordion">
+                    <div><p>Please select a category, so you can see the matching events</p></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <p id="deleteWarning">If you press delete the selected category will be removed from every event and then deleted automatically!     <button type="button" class="btn btn-danger" id="deleteCategoryButton" onclick="removeCategory()">Delete category</button>
+    </p>
+    <p><a href="#" rel="modal:close">Close</a></p>
+</div>
+
+
+<div id = "mainContainer">
+    <table id="mainTable">
+        <tr>
+            <td id="emptyTD"></td>
+            <td id="dialog-TD" style="display: none;">
+                <div id="dialog-form">
+                    <form id="entryForm" novalidate>
+                        <fieldset>
+                            <table id="formTable">
+                                <tbody>
+                                <tr>
+                                    <td colspan="4"><input type="text" name="title" placeholder="Title" id="title" class="input text ui-widget-content ui-corner-all" required></td>
+                                </tr>
+                                </tbody>
+                                <tbody id="imageTable">
+                                <tr>
+                                    <td colspan="4" id="imgTD">
+                                        <div id="imageContainer">
+                                            <a id="imagelink" href="" title="Show full sized" data-lightbox="image-1">
+                                                <img class="img-fluid img-thumbnail rounded mx-auto d-block img-responsive" id="imageurl" src="#" alt="" align="middle"/>
+                                            </a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" id="uploadRow" class="text ui-widget-content ui-corner-all">
+                                        <button id="uploadButton" type="button" class="btn btn-info">Upload Image</button>
+                                        <input name="imagedata" type="file" id="imagedata" class="text ui-widget-content ui-corner-all hidden" accept="image/png, image/jpeg" onchange="readURL(this);">
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody id="dateTable">
+                                <tr><td colspan="4"><label class="headerLabel"> Date and Time </label></td></tr>
+                                <tr>
+                                    <td id="dateStartTD">
+                                        <input type="date" id="dateStart" class="input text ui-widget-content ui-corner-all" required>
+                                    </td>
+
+                                    <td class="middleCell" colspan="2">
+                                        to
+                                    </td>
+
+                                    <td id="dateEndTD">
+                                        <input type="date" id="dateEnd" class="input text ui-widget-content ui-corner-all" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td id="timeStartTD">
+                                        <input type="text" id="timeStart" class="input text ui-widget-content ui-corner-all" required>
+                                    </td>
+
+                                    <td colspan="2" class="middleCell">
+                                        <input type="checkbox" id="allday" class="input text ui-widget-content ui-corner-all" data-toggle="tooltip" data-placement="top" title="All-Day-Event">
+                                    </td>
+
+                                    <td id="timeEndTD">
+                                        <input type="text" id="timeEnd" class="input text ui-widget-content ui-corner-all" required>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody id="infoTable">
+                                <tr><td colspan="4"><label class="headerLabel"> Basic Information </label></td></tr>
+                                <tr>
+                                    <td colspan="4"><input type="text" name="location" placeholder="Location" id="location" class="input text ui-widget-content ui-corner-all"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="email" name="organizer" placeholder="Organizer" id="organizer" class="input text ui-widget-content ui-corner-all" required></td>
+
+                                    <td colspan="2"><input type="text" name="webpage" placeholder="Webpage" id="webpage" class="input text ui-widget-content ui-corner-all"></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="center"><label for="status">Status</label></td>
+                                    <td colspan="2" class="center"><label for="categories">Category</label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <select name="status" id="status" multiple="multiple" class="text ui-widget-content">
+                                            <option value="free">Free</option>
+                                            <option value="busy">Busy</option>
+                                            <option value="tentative">Tentative</option>
+                                        </select>
+                                    </td>
+
+                                    <td colspan="2">
+                                        <select name="categories" id="categories" multiple="multiple" class="text ui-widget-content">
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody><tr><td colspan="4" id="extraDiv"><textarea id="extra" title="Comment/Reminder" class="input text ui-widget-content" placeholder="Place for additional information and reminder" rows="5"></textarea></td></tr></tbody>
+                            </table>
+                            <table id="buttonTable">
+                                <tbody>
+                                <tr>
+                                    <td><button type='button' id="addEntryButton" class="enableOnInput btn btn-primary" disabled="disabled" onclick="$entryDialogue.addEntry()">Add</button></td>
+                                    <td><button type='button' id="editEntryButton" class="enableOnInput btn btn-info"  disabled="disabled" onclick="$entryDialogue.changeEntry()">Change</button></td>
+                                    <td><button type='button' id="deleteEntryButton" class="enableOnInput btn btn-danger" disabled="disabled" onclick="$entryDialogue.removeEntry()">Delete</button></td>
+                                    <td><button type='button' id="cancelEntryButton" type="button" class="enableOnInput btn btn-secondary" disabled="disabled" onclick="closeDialogue(false)">Cancel</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </td>
+
+
+            <td id="calendarTD">
+                <div id="calendarContainer">
+                    <div id='calendar'></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="loadingModal"></div>
+
+<script src="js/plugins.js"></script>
+<script src="js/calendarController.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

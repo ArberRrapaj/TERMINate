@@ -1,0 +1,63 @@
+.navbar a > img {
+  float: left;
+  max-width: 65px;
+  max-height: 50px;
+  margin-top: 2px;
+  margin-left: 40px;
+  margin-right: 30px;
+}
+
+.navbar h1 {
+  float: right;
+  line-height: 80px;
+
+  font-size: 45px;
+  margin: 0px;
+}
+
+.navbar-default .navbar-nav > li > a, h1{
+  color: white;
+}
+
+.navbar {
+  border: 0 solid transparent;
+  border-radius: 0;
+  min-height: 80px;
+  background-color: rgb(37, 70, 122);
+  margin-bottom: 10px;
+}
+
+.navbar-header .navbar-brand {
+  padding: 0 5px;
+  line-height: 50px;
+  //float: left;
+  margin-left: 15px;
+  height: 50px;
+}
+
+
+.navbar #logo {
+    
+}
+
+.navbar #userID {
+    padding: 4px;
+    text-align: center;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+    font-size: 17px;
+    color: white;
+  }
+}
