@@ -44,6 +44,10 @@ select {
     margin-top: 5px;
     margin-bottom: 0px;
 }
+#categoriesModal {
+    margin: auto;
+    height: 70%;
+}
 
 #categoriesModal label span, #infoTable label span {
     margin-left: 5px;

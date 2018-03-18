@@ -312,9 +312,10 @@ $entryDialogue.addEntry = function() {
             // noinspection JSAnnotator
             starttime.minute(00);
             // noinspection JSAnnotator
-            starttime.hour(00);
+            starttime.hour(01);
 
-            endtime.hour(23);
+            endDate = endDate.add(1, "days");
+            endtime.hour(00);
             endtime.minute(59);
         }
         startDate = startDate.set({
@@ -383,9 +384,10 @@ $entryDialogue.changeEntry = function () {
             // noinspection JSAnnotator
             starttime.minute(00);
             // noinspection JSAnnotator
-            starttime.hour(00);
-
-            endtime.hour(23);
+            starttime.hour(01);
+            
+            endDate = endDate.add(1, "days");
+            endtime.hour(00);
             endtime.minute(59);
         }
         startDate = startDate.set({

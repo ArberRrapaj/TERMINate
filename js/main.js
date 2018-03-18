@@ -502,6 +502,17 @@ $(document).ready(function(){
         }
     });
 
+    $('#allday').change(
+        function(){
+            if (this.checked) {
+                $("#timeStart").prop('disabled', true).val("00:00");
+                $("#timeEnd").prop('disabled', true).val("23:59");
+            } else {
+                $("#timeStart").prop('disabled', false);
+                $("#timeEnd").prop('disabled', false);
+            }
+        });
+
     $('#calendar').fullCalendar('option', 'height', "parent");
 
     alert.alert("info", null, "Welcome, please type in your account-number to access your personal calendar.")
